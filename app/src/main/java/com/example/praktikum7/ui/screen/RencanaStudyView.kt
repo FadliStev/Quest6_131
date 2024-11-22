@@ -2,6 +2,7 @@ package com.example.praktikum7.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Icon
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.praktikum7.R
+import com.example.praktikum7.data.RuangKelas
 import com.example.praktikum7.model.Mahasiswa
 
 @Composable
@@ -104,6 +107,19 @@ fun RencanaStudyView(
             Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
             Text(text = "Silahkan Pilih Mata Kuliah yang anda inginkan", fontSize = 12.sp,
                 fontWeight = FontWeight.Light)
+            Spacer(modifier = Modifier.padding(8.dp))
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                RuangKelas.listKelas.forEach { data ->
+                    Row (verticalAlignment = Alignment.CenterVertically){
+                        RadioButton(selected = pilihanKelas == data, onClick = { pilihanKelas = data })
+                    Text(data)
+                    }
+                }
+            }
         }
     }
 }
