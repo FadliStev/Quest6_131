@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.Icon
@@ -82,6 +83,25 @@ fun RencanaStudyView(
                     tint = Color.White)
             }
             
+        }
+    }
+
+    Box(modifier = Modifier
+        .background(
+            color = Color.White,
+            shape = RoundedCornerShape(
+                topEnd = 15.dp,
+                topStart = 15.dp
+            )
+        )
+        .fillMaxSize()
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
         }
     }
 }
