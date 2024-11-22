@@ -1,4 +1,4 @@
-package com.example.praktikum7.ui.viewmodel
+package com.example.praktikum7.ui.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.praktikum7.model.Mahasiswa

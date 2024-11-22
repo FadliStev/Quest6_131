@@ -1,4 +1,4 @@
-package com.example.praktikum7.ui.screen
+package com.example.praktikum7.ui.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import com.example.praktikum7.R
 
 @Composable
-fun SplashView(){
+fun SplashView(
+    onMulaiButton: () -> Unit
+){
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -38,7 +40,7 @@ fun SplashView(){
             modifier = Modifier.padding(16.dp))
 
         Button(
-            onClick = {}) {
+            onClick = {onMulaiButton}) {
 
             Text(text = "Mulai")
             

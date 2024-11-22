@@ -1,4 +1,4 @@
-package com.example.praktikum7.ui.widget
+package com.example.praktikum7.widget
 
 import android.media.metrics.TrackChangeEvent
 import android.widget.NumberPicker.OnValueChangeListener

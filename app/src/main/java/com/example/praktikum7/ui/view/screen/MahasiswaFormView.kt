@@ -1,4 +1,4 @@
-package com.example.praktikum7.ui.screen
+package com.example.praktikum7.ui.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,9 +40,8 @@ import com.example.praktikum7.R
 
 @Composable
 fun MahasiswaFormView(
-    modifier: Modifier,
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
-    onBacButtonClicked: () -> Unit
+    onBackButtonClicked: () -> Unit
 ){
     var nama by remember{
         mutableStateOf("")
@@ -171,7 +170,7 @@ fun MahasiswaFormView(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Absolute.SpaceEvenly
             ) {
-                Button(onClick = { onBacButtonClicked() }) {
+                Button(onClick = { onBackButtonClicked() }) {
                     Text(text = "Kembali")
 
                 }

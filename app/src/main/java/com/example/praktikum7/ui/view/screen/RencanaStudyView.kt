@@ -1,4 +1,4 @@
-package com.example.praktikum7.ui.screen
+package com.example.praktikum7.ui.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,15 +35,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.praktikum7.R
 import com.example.praktikum7.data.RuangKelas
 import com.example.praktikum7.model.Mahasiswa
+import com.example.praktikum7.navigation.Halaman
 
 @Composable
 fun RencanaStudyView(
     mahasiswa: Mahasiswa,
     onSubmitButtonClicked: (MutableList<String>) -> Unit,
-    onBackButtonClicked: () -> Unit
+    onBackButtonClicked: () -> Unit,
+    navController: NavHostController
 ){
     var choosenDropdown by remember {
         mutableStateOf("")
@@ -145,7 +149,8 @@ fun RencanaStudyView(
                     Text(text = "Kembali")
                     
                 }
-                Button(onClick = { onSubmitButtonClicked(listData) }, enabled = checked) {
+                Button(onClick = { onSubmitButtonClicked(listData)
+                                 navController.navigate(Halaman.Tampil.name)}, enabled = checked) {
                     Text(text = "Lanjut")
                     
                 }
