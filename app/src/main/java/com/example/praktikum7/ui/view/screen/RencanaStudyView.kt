@@ -38,9 +38,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.praktikum7.R
+import com.example.praktikum7.data.MataKuliah
 import com.example.praktikum7.data.RuangKelas
 import com.example.praktikum7.model.Mahasiswa
 import com.example.praktikum7.navigation.Halaman
+import com.example.praktikum7.widget.DynamicSelectedField
 
 @Composable
 fun RencanaStudyView(
@@ -94,67 +96,84 @@ fun RencanaStudyView(
             }
             
         }
-    }
 
-    Box(modifier = Modifier
-        .background(
-            color = Color.White,
-            shape = RoundedCornerShape(
-                topEnd = 15.dp,
-                topStart = 15.dp
+        Box(modifier = Modifier
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(
+                    topEnd = 15.dp,
+                    topStart = 15.dp
+                )
             )
-        )
-        .fillMaxSize()
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
-            Text(text = "Silahkan Pilih Mata Kuliah yang anda inginkan", fontSize = 12.sp,
-                fontWeight = FontWeight.Light)
-            Spacer(modifier = Modifier.padding(8.dp))
-            Row (
+            .fillMaxSize()
+        ){
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                RuangKelas.listKelas.forEach { data ->
-                    Row (verticalAlignment = Alignment.CenterVertically){
-                        RadioButton(selected = pilihanKelas == data, onClick = { pilihanKelas = data })
-                    Text(data)
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Text(text = "Pilih Mata Kuliah Peminatan", fontWeight = FontWeight.Bold)
+                Text(text = "Silahkan Pilih Mata Kuliah yang anda inginkan", fontSize = 12.sp,
+                    fontWeight = FontWeight.Light)
+                Spacer(modifier = Modifier.padding(8.dp))
+                DynamicSelectedField(
+                    selectedValue = choosenDropdown,
+                    options = MataKuliah.options,
+                    label = "Mata Kuliah",
+                    onValueChangeEvent = {
+                        choosenDropdown = it
+                    })
+                Spacer(modifier = Modifier.padding(8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(8.dp))
+                Text(text = "Pilih Kelas Belajar", fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light)
+                Spacer(modifier = Modifier.padding(8.dp))
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ){
+                    RuangKelas.listKelas.forEach { data ->
+                        Row (verticalAlignment = Alignment.CenterVertically){
+                            RadioButton(selected = pilihanKelas == data, onClick = { pilihanKelas = data })
+                            Text(data)
+                        }
                     }
                 }
-            }
-            Spacer(modifier = Modifier.padding(8.dp))
-            HorizontalDivider()
-            Spacer(modifier = Modifier.padding(8.dp))
-            Text(text = "Klausul Persetujuan Mahasiswa", fontWeight = FontWeight.Bold)
-            Row (verticalAlignment = Alignment.CenterVertically){
-                Checkbox(checked = checked, onCheckedChange = {checked = it},
-                    enabled = choosenDropdown.isNotBlank() && pilihanKelas.isNotBlank()
+                Spacer(modifier = Modifier.padding(8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(8.dp))
+                Text(text = "Klausul Persetujuan Mahasiswa", fontWeight = FontWeight.Bold)
+                Row (verticalAlignment = Alignment.CenterVertically){
+                    Checkbox(checked = checked, onCheckedChange = {checked = it},
+                        enabled = choosenDropdown.isNotBlank() && pilihanKelas.isNotBlank()
                     )
-                Text(text = "Saya menyetujui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
-                    fontWeight = FontWeight.Light, fontSize = 10.sp
+                    Text(text = "Saya menyetujui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
+                        fontWeight = FontWeight.Light, fontSize = 10.sp
                     )
 
-            }
-            Spacer(modifier = Modifier.padding(8.dp))
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                Button(onClick = { onBackButtonClicked() }) {
-                    Text(text = "Kembali")
-                    
                 }
-                Button(onClick = { onSubmitButtonClicked(listData)
-                                 navController.navigate(Halaman.Tampil.name)}, enabled = checked) {
-                    Text(text = "Lanjut")
-                    
+                Spacer(modifier = Modifier.padding(8.dp))
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ){
+                    Button(onClick = { onBackButtonClicked() }) {
+                        Text(text = "Kembali")
+
+                    }
+                    Button(onClick = { onSubmitButtonClicked(listData)
+                        navController.navigate(Halaman.Tampil.name)}, enabled = checked) {
+                        Text(text = "Lanjut")
+
+                    }
                 }
             }
         }
     }
+
 }
